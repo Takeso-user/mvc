@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/first")
 public class FirstController {
     @GetMapping("/hello")
-    public String helloPage(@RequestParam(value = "name",required = false) String name,
-                            @RequestParam(value = "surname",required = false) String surname,
+    public String helloPage(@RequestParam(value = "name", required = false) String name,
+                            @RequestParam(value = "surname", required = false) String surname,
                             Model model) {
 //        System.out.println("hello! " + name + " " + surname);
-       model.addAttribute("message","hello "+name+"  "+surname);
+        model.addAttribute("message", "hello " + name + "  " + surname);
 
         return "first/hello";
     }
@@ -25,5 +25,28 @@ public class FirstController {
     @GetMapping("/goodbye")
     public String goodByePage() {
         return "first/goodbye";
+    }
+    @GetMapping("/calculator")
+    public String calculator(@RequestParam(value = "a", required = false) int a,
+                             @RequestParam(value = "b", required = false) int b,
+                             @RequestParam(value = "action", required = false) String action, Model model) {
+
+        switch (action) {
+            case "sum":
+                model.addAttribute("message", a + "+" + b + "=" + (a + b));
+                break;
+            case "sub":
+                model.addAttribute("message", a + "-" + b + "=" + (a - b));
+                break;
+            case "mult":
+                model.addAttribute("message", a + "*" + b + "=" + (a * b));
+                break;
+            case "div":
+                model.addAttribute("message", a + ":" + b + "=" + (a / b));
+                break;
+            default:
+        }
+        return "first/calculator";
+
     }
 }
