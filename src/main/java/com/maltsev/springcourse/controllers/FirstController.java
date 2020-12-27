@@ -42,7 +42,7 @@ public class FirstController {
                 model.addAttribute("message", a + "*" + b + "=" + (a * b));
                 break;
             case "div":
-                model.addAttribute("message", a + ":" + b + "=" + (a / b));
+                model.addAttribute("message", a + ":" + b + "=" + (a /(double) b));
                 break;
             default:
         }
